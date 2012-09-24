@@ -10,3 +10,6 @@
 *.lai
 *.la
 *.a
+
+# qtSDK build/debug files
+*build-desktop*
