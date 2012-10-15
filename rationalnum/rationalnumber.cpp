@@ -12,11 +12,37 @@ bool rnEqual(RationalNumber a, RationalNumber b){
 }
 
 bool rnLessThan(RationalNumber a, RationalNumber b){
-    int n;
-    int m;
-    n = a.numerator * b.denominator;
-    m = a.denominator * b.numerator;
+    int n = a.numerator * b.denominator;
+    int m = a.denominator * b.numerator;
+    if (a.denominator * b.denominator < 0) {
+        n *= -1;
+        m *= -1;
+    };
     return n<m;
+}
+
+RationalNumber rnAdd (RationalNumber r1, RationalNumber r2) {
+    int numerator1 = r1.numerator * r2.denominator;
+    int numerator2 = r2.numerator * r1.denominator;
+    RationalNumber sum = {numerator1 + numerator2, r1.denominator * r2.denominator};
+    return rnNormalize(sum);
+}
+
+RationalNumber rnSubtract (RationalNumber r1, RationalNumber r2) {
+    int numerator1 = r1.numerator * r2.denominator;
+    int numerator2 = r2.numerator * r1.denominator;
+    RationalNumber difference = {numerator1 - numerator2, r1.denominator * r2.denominator};
+    return rnNormalize(difference);
+}
+
+RationalNumber rnMultiply (RationalNumber r1, RationalNumber r2) {
+    RationalNumber product = {r1.numerator * r2.numerator, r1.denominator * r2.denominator};
+    return rnNormalize(product);
+}
+
+RationalNumber rnDivide (RationalNumber r1, RationalNumber r2) {
+    RationalNumber inverse = {r2.denominator, r2.numerator};
+    return rnMultiply(r1, inverse);
 }
 
 RationalNumber rnNormalize (RationalNumber r){
