@@ -1,22 +1,15 @@
 #ifndef RATIONALNUMCOLLECTION_H
 #define RATIONALNUMCOLLECTION_H
 
-<<<<<<< HEAD
 #include "rationalnumber.h"
 
 struct RationalNumberCollection {
     int length;
     RationalNumber rnList[2000];
-=======
-struct RationalNumberCollection {
-    const int length = 2000;
-    RationalNumber rnList[length];
->>>>>>> 13ea6fc5d13c471d90def642066a4facc0be4124
     int totalUniqueCount;
     int totalCount;
     RationalNumber sum;
     RationalNumber average;
-<<<<<<< HEAD
     RationalNumber median;
 };
 
@@ -37,11 +30,5 @@ int rncBinarySearch(RationalNumberCollection* c, RationalNumber r);
 int rncBinarySearch(RationalNumberCollection* c, RationalNumber r, int min, int max);
 void rncCalcMedian(RationalNumberCollection* c);
 RationalNumber rncMedian(RationalNumberCollection* c);
-=======
-
-};
-
-rncInit(RationalNumberCollection* c);
->>>>>>> 13ea6fc5d13c471d90def642066a4facc0be4124
 
 #endif // RATIONALNUMCOLLECTION_H

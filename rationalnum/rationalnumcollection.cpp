@@ -1,5 +1,4 @@
 #include "rationalnumcollection.h"
-<<<<<<< HEAD
 #include <stdio.h>
 
 /*
@@ -27,26 +26,12 @@ or returns -1 if it's not in the collection
 int rncExists(RationalNumberCollection* c, RationalNumber r){
     for (int i = 0; i < c->length; i = i+2){
         if(rnEqual(r, c->rnList[i])){
-=======
-
-void rncInit(RationalNumberCollection *c){
-    c->average = RationalNumber(0,1);
-    c->sum=RationalNumber(0,1);
-    c->totalCount=0;
-    c->totalUniqueCount=0;
-}
-
-int rncExists(RationalNumberCollection *c, RationalNumber r){
-    for (int i = 0; i < c->length; i = i+2){
-        if(rnEqual(r,c->rnList[i])){
->>>>>>> 13ea6fc5d13c471d90def642066a4facc0be4124
             return i;
         }
     }
     return -1;
 }
 
-<<<<<<< HEAD
 /*
 returns the amount of the given rational number in the collection
 or returns 0 if it's not in the collection
@@ -92,50 +77,20 @@ void rncAdd(RationalNumberCollection* c, RationalNumber r){
             //c->rnList[(c->totalUniqueCount)*2+1] = rnOne;
             rncAddSorted(c,r);
             rncAdded(c, r, true);
-=======
-int rncCount(RationalNumberCollection *c, RationalNumber r){
-    int index = rncExists(&c, r);
-    if(index == -1){
-        return 0;
-    }else{
-        return rmList[index+1].numerator;
-    }
-}
-
-void rncAdd(RationalNumberCollection *c, RationalNumber r){
-    if(c->totalUniqueCount==0){
-        c->rnList[0]=r;
-        c->rnList[1]=RationalNumber(1,1);
-        rncAdded(&c, r, true);
-    }else{
-        int index = rncExists(&c, r);
-        if(index == -1){
-            c->rnList[(c->totalUniqueCount+1)*2]=r;
-            c->rnList[(c->totalUniqueCount+1)*2+1]=RationalNumber(1,1);
-            rncAdded(&c, r, true);
-        }else{
-            c->rnList[index+1]=rnAdd(rnList[index+1],RationalNumber(1,1));
-            rncAdded(&c, r, false);
->>>>>>> 13ea6fc5d13c471d90def642066a4facc0be4124
         }
     return;
     }
 }
-<<<<<<< HEAD
 
 /*
 calculates the new values for the members of the given collection, after
 a rational number was added
 */
 void rncAdded(RationalNumberCollection* c, RationalNumber r, bool isNew){
-=======
-void rncAdded(RationalNumberCollection *c, RationalNumber r, bool isNew){
->>>>>>> 13ea6fc5d13c471d90def642066a4facc0be4124
     if(isNew){
         c->totalUniqueCount++;
     }
     c->totalCount++;
-<<<<<<< HEAD
     c->sum = rnAdd(c->sum, r);
     RationalNumber  rnDivisor = { c->totalCount, 1 };
     c->average=rnDivide(c->sum, rnDivisor);
@@ -163,35 +118,12 @@ void rncRemove(RationalNumberCollection* c, RationalNumber r){
             }else{
                 rncRemoved(c, r, false);
             }
-=======
-    c->sum=rncAdd(c->sum, r);
-    c->average=rnDivide(c->sum, RationalNumber(c->totalCount),1);
-    return
-}
-
-void rncRemove(RationalNumberCollection *c, RationalNumber r){
-    if(c->totalUniqueCount==0){
-        return;
-    }else{
-        int index = rncExists(&c, r);
-        if(index == -1){
-            return;
-        }else{
-            c->rnList[index+1]=rnSubtract(rnList[index+1],RationalNumber(1,1));
-            if(c->rnList[index+1].numerator == 0){
-                c->rnList[index]=RationalNumber(0,1);
-                rncRemoved(&c, r, true);
-            }else{
-                rncRemoved(&c, r, false);
-            }
-
->>>>>>> 13ea6fc5d13c471d90def642066a4facc0be4124
         }
     return;
     }
 }
 
-<<<<<<< HEAD
+
 /*
 calculates the new values for the members of the given collection, after
 a rational number was removed
@@ -370,23 +302,3 @@ returns the median of the given collection
 RationalNumber rncMedian(RationalNumberCollection* c) {
     return c->median;
 }
-=======
-void rncRemoved(RationalNumberCollection *c, RationalNumber r, bool isZero){
-    if(isZero){
-        // TODO: Array aufräumen
-        c->totalUniqueCount--;
-    }
-    c->totalCount--;
-    c->sum=rncSubtract(c->sum, r);
-    c->average=rnDivide(c->sum, RationalNumber(c->totalCount),1);
-    return
-}
-
-int rncTotalCount(RationalNumberCollection *c){
-    return c->totalCount;
-}
-
-int rncTotalUniqueCount(RationalNumberCollection *c){
-    return c->totalUniqueCount;
-}
->>>>>>> 13ea6fc5d13c471d90def642066a4facc0be4124
