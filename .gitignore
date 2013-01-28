@@ -12,5 +12,5 @@
 *.a
 
 # qtSDK build/debug files
-*build-desktop*
+*build-*
 *.pro*
